@@ -1,0 +1,87 @@
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  height: 100vh;
+  overflow: hidden; /* Evitar barras de rolagem */
+}
+
+#container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box; /* Inclui padding na largura total */
+}
+
+canvas {
+  border: 1px solid #000;
+  background-color: #8c92ac;
+  cursor: crosshair;
+  flex: 2;
+  margin-right: 20px;
+  max-height: 80vh; /* Limitar a altura do canvas */
+  width: auto; /* Permitir que o canvas se ajuste à largura */
+}
+
+#controls {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+#polygonTableContainer {
+  display: block;
+  margin-left: 10px;
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+button {
+  cursor: pointer;
+  margin: 5px;
+}
+
+#botoes-b {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 10px;
+  padding: 0 10px;
+}
+
+body.dark-mode {
+  background-color: #151626;
+  color: #ffffff;
+}
+
+/* Media Queries para telas menores */
+@media (max-width: 768px) {
+  #container {
+    flex-direction: column; /* Mudar para coluna em telas menores */
+  }
+
+  canvas {
+    margin-right: 0; /* Remover margem direita */
+    margin-bottom: 20px; /* Adicionar margem inferior */
+    width: 100%; /* Fazer o canvas ocupar toda a largura */
+  }
+
+  #controls {
+    width: 100%; /* Fazer os controles ocuparem toda a largura */
+  }
+}
