@@ -345,7 +345,6 @@ function fillPoly(poly, ctx) {
             const variationB = (edge[i + 1].b - edge[i].b) / (endX - initialX);
     
             for (let currentX = initialX; currentX < endX; currentX++) {
-                ctx.fillStyle = `rgb(${Math.round(currentR)}, ${Math.round(currentG)}, ${Math.round(currentB)})`;
                 ctx.fillRect(currentX, currentY, 1, 1);
                 currentR += variationR;
                 currentG += variationG;
