@@ -5,8 +5,8 @@ body {
   align-items: center;
   justify-content: center;
   margin: 0;
-  height: 100vh;
-  overflow: hidden; /* Evitar barras de rolagem */
+  height: 90vh;
+  overflow: auto; /* Evitar barras de rolagem */
 }
 
 #container {

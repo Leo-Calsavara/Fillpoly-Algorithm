@@ -155,8 +155,11 @@ listaPoly.forEach((poly, index) => {
         input.addEventListener('change', onchange); // Mudança para o evento 'change'
         return input;
     };
-    colorTable.appendChild(createColorInput(poly.vertices[0].extractRGB(), (event) => handleColorChange(index, 0, 'vertex', event)));
-    edgeCell.appendChild(createColorInput(poly.extractRGB(), (event) => handleColorChange(index, null, 'edge', event)));
+    colorTable.appendChild(createColorInput(poly.vertices[0].extractRGB(), (event) => handleColorChange(index, 'vertex', event)));
+    const button = document.createElement('button');
+    button.textContent = 'ON/OFF';
+    button.addEventListener('click', (event) => handleColorChange(index, 'edge', event));
+    edgeCell.appendChild(button);
 
     actionsCell.innerHTML = `<button onclick="deletePoly(${index})">Delete</button>`;
 });
@@ -175,23 +178,33 @@ function rgbToHex(r, g, b) {
     return `#${hexR}${hexG}${hexB}`;
 }
 
-function handleColorChange(index, vertexIndex, type, event) {
+function handleColorChange(index, type, event) {
 const colorPicker = event.target;
 const hexColor = colorPicker.value;
 const rgbColor = hexToRgb(hexColor);
 
-if (type === 'vertex') {
-    // Mudança de cor para um vértice específico
-    const vertices = listaPoly[index].vertices;
-    vertices.forEach(vertex => {
-        vertex.color = `rgb(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b})`;
-    });
-    redrawCanvas(context);
-} else if (type === 'edge') {
-    // Mudança de cor para a borda do polígono
-    listaPoly[index].Edge = `rgb(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b})`;
-    redrawCanvas(context);
-}
+    if (type === 'vertex') {
+        // Mudança de cor para um vértice específico
+        const vertices = listaPoly[index].vertices;
+        vertices.forEach(vertex => {
+            vertex.color = `rgb(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b})`;
+        });
+        redrawCanvas(context);
+    } else if (type === 'edge') {
+        // Verifica a cor atual da borda
+        const currentEdgeColor = listaPoly[index].Edge;
+
+        if (currentEdgeColor === 'rgb(255, 255, 0)') { // Se for amarelo (em RGB)
+            // Mudar para a cor do primeiro vértice
+            const firstVertexColor = listaPoly[index].vertices[0].color;
+            listaPoly[index].Edge = firstVertexColor;
+        } else {
+            // Volta para amarelo
+            listaPoly[index].Edge = 'rgb(255, 255, 0)'; // Amarelo em RGB
+        }
+
+        redrawCanvas(context);
+    }
 
 updatePolyTable();
 }
