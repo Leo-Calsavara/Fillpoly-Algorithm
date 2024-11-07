@@ -193,7 +193,7 @@ const rgbColor = hexToRgb(hexColor);
         // Verifica a cor atual da borda
         const currentEdgeColor = listaPoly[index].Edge;
 
-        if (currentEdgeColor === 'rgb(255, 255, 0)') { // Se for amarelo (em RGB)
+        if (currentEdgeColor === 'rgb(255, 255, 0)') {
             // Mudar para a cor do vértice
             const firstVertexColor = listaPoly[index].vertices[0].color;
             listaPoly[index].Edge = firstVertexColor;
