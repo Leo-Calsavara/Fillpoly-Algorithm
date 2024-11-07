@@ -184,7 +184,6 @@ const hexColor = colorPicker.value;
 const rgbColor = hexToRgb(hexColor);
 
     if (type === 'vertex') {
-        // Mudança de cor para um vértice específico
         const vertices = listaPoly[index].vertices;
         vertices.forEach(vertex => {
             vertex.color = `rgb(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b})`;
@@ -195,7 +194,7 @@ const rgbColor = hexToRgb(hexColor);
         const currentEdgeColor = listaPoly[index].Edge;
 
         if (currentEdgeColor === 'rgb(255, 255, 0)') { // Se for amarelo (em RGB)
-            // Mudar para a cor do primeiro vértice
+            // Mudar para a cor do vértice
             const firstVertexColor = listaPoly[index].vertices[0].color;
             listaPoly[index].Edge = firstVertexColor;
         } else {
